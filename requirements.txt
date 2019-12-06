@@ -1,2 +1,17 @@
 Django==2.0.3
 djangorestframework
+DOCKER SWARM CLUSTER:
+------------------------------
+ yum install docker -y
+ docker swarm init --advertise-addr 172.31.90.107
+ docker swarm join --token """" 172.31.90.107:2377
+ docker node ls # List No of nodes availabe on cluster
+ docker service create -p 80:80 --name webserver nginx # For Testing Purpose use it, Create a service
+ docker service ls
+ docker service ps webserver
+ Another feature of Docker Swarm is the ability to scale a service, that is, spin up additional instances of a service.
+ docker service scale webserver=5
+ docker service ps webserver
+ docker service rollback webserver # It will go to the Previous state.
+ 
+ 
