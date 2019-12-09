@@ -70,4 +70,6 @@ vi requirements.txt
  docker build --tag app_image:1 .
  docker run --link redis:redis --name app -p 5000:5000 -itd app_image:1
  
-
+Remove the Link and Tested it. it will not work
+docker run --name app -p 5000:5000 -itd app_image:1
+curl localhost:5000
