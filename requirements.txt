@@ -73,3 +73,57 @@ vi requirements.txt
 Remove the Link and Tested it. it will not work
 docker run --name app -p 5000:5000 -itd app_image:1
 curl localhost:5000
+
+DOCKER COMPOSE PARAMETERS:
+----------------------------------
+Build can be specified either as a string containing a path to the build context
+--------
+version: "3.7"
+services:
+  webapp:
+    build: ./dir
+Name of docker file is different:
+-------------------------------------
+version: "3.7"
+services:
+  webapp:
+    build:
+      context: ./dir
+      dockerfile: Dockerfile-alternate
+      args:
+        buildno: 1
+If you specify image as well as build:
+--------------------------------------
+  build: ./dir
+  image: webapp:tag
+ context
+
+Either a path to a directory containing a Dockerfile, or a url to a git repository.
+------------------------------------------------------------------------------------
+build:
+  context: .
+  dockerfile: Dockerfile-alternate
+ ARGS:
+ ------------
+ vi Dockerfile
+    ARG buildno
+    ARG gitcommithash
+    RUN echo "Build number: $buildno"
+    RUN echo "Based on commit: $gitcommithash"
+vi Docker-compose.yml
+  build:
+  context: .
+  args:
+    buildno: 1
+    gitcommithash: cdc3b19
+
+
+
+
+  
+  
+
+
+
+
+
